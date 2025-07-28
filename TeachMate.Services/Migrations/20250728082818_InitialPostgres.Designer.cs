@@ -9,10 +9,10 @@ using TeachMate.Services;
 
 #nullable disable
 
-namespace TeachMate.Services.Migrations.Postgres
+namespace TeachMate.Services.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250728082229_InitialPostgres")]
+    [Migration("20250728082818_InitialPostgres")]
     partial class InitialPostgres
     {
         /// <inheritdoc />

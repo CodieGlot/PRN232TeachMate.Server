@@ -1,6 +1,5 @@
 ﻿using TeachMate.Domain;
 using TeachMate.Domain.Models.Payment;
-using TeachMate.Services.Migrations;
 
 
 namespace TeachMate.Services;
