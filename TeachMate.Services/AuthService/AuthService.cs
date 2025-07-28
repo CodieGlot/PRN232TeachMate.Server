@@ -152,15 +152,15 @@ public class AuthService : IAuthService
         {
             throw new BadRequestException("Confirm password fail");
         }
-        dto.New_Password = BCrypt.Net.BCrypt.HashPassword(dto.New_Password);
+        dto.New_Password = BC.HashPassword(dto.New_Password);
         user.Password = dto.New_Password;
         await _context.SaveChangesAsync();
         return new ResponseDto("Change successfully");
-
     }
     public async Task<ResponseDto> ForgetPassword(ForgetPasswordDto dto)
     {
-        var appUser = await _context.AppUsers.Where(p => p.Email.Equals(dto.Email)).FirstOrDefaultAsync();
+        var appUser = await _context.AppUsers.Where(p => p.Email != null && p.Email.Equals(dto.Email)).FirstOrDefaultAsync() 
+            ?? throw new BadRequestException("Wrong Email");
 
         if (dto.NewPassword != dto.ConfirmPassword)
         {
