@@ -23,7 +23,7 @@ public class NotifyUsersToPay : IJob
         {
             _emailService.SendTestEmail(user);
 
-            await _notificationService.CreatePushNotification(NotificationType.PaymentRequired, null, new List<Guid> { user.Id }, new List<object>());
+            //await _notificationService.CreatePushNotification(NotificationType.PaymentRequired, null, new List<Guid> { user.Id }, new List<object>());
         }
     }
 }
