@@ -55,10 +55,8 @@ jobs:
       - name: Install EF Core CLI
         run: dotnet tool install --global dotnet-ef
 
-      - name: Debug project structure
-        run: find . -name "*.csproj"
-
       - name: Run EF Core Migrations
+        working-directory: ./PRN232TeachMate.Server
         run: |
           dotnet ef database update \
             --project ./TeachMate.Services/TeachMate.Services.csproj \
