@@ -218,6 +218,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // ✅ Require basic auth for Swagger in non-dev environments
+    app.UseMiddleware<SwaggerBasicAuthMiddleware>();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "TeachMate API V1");
+        options.RoutePrefix = ""; // Optional: serve Swagger UI at root
+    });
+}
 
 app.UseGlobalExceptionHandler();
 
