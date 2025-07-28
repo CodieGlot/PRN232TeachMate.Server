@@ -8,7 +8,7 @@ using TeachMate.Services;
 
 #nullable disable
 
-namespace TeachMate.Services.Migrations.Postgres
+namespace TeachMate.Services.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
