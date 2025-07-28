@@ -6,6 +6,7 @@ namespace TeachMate.Domain;
 public class LearningModuleRequest
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public Guid RequesterId { get; set; }
     public string RequesterDisplayName { get; set; } = string.Empty;

@@ -11,7 +11,8 @@ namespace TeachMate.Domain
     public class UserOTP
     {
         [Key]
-        public int id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         public string OTP { get; set; }
         public string Gmail { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;

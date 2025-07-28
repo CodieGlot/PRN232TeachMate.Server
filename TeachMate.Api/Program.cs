@@ -83,16 +83,8 @@ builder.Services.AddDbContext<DataContext>(options =>
     var env = builder.Environment.EnvironmentName;
     var config = builder.Configuration;
 
-    if (env == "Development")
-    {
-        // Use SQL Server in development
-        options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-    }
-    else
-    {
-        // Use PostgreSQL (Supabase) in production
-        options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
-    }
+    // Use PostgreSQL (Supabase) in production
+    options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
 });
 
 
