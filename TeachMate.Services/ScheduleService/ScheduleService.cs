@@ -309,10 +309,6 @@ public class ScheduleService : IScheduleService
             {
                 throw new BadRequestException("The session have ended");
             }
-            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.UtcNow) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.UtcNow))))
-            {
-                throw new BadRequestException("The session have not started");
-            }
 
             else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.UtcNow) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.UtcNow)))) {
                 return learningSession.LinkMeet;
@@ -327,10 +323,6 @@ public class ScheduleService : IScheduleService
             else if ((learningSession.Date < DateOnly.FromDateTime(DateTime.UtcNow)) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.EndTime < TimeOnly.FromDateTime(DateTime.UtcNow)))) 
             {
                 throw new BadRequestException("The session have ended");
-            }
-            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.UtcNow) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.UtcNow))))
-            {
-                throw new BadRequestException("The session have not started");
             }
 
             else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.UtcNow) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.UtcNow)))) {
