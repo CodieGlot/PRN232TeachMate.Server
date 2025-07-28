@@ -21,7 +21,9 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogWarning($"Message from GlobalExceptionHandlerMiddleware: {ex.Message}");
+            _logger.LogError($"Message from GlobalExceptionHandlerMiddleware: {ex.Message}");
+            if (ex.InnerException != null)
+                _logger.LogError("GlobalExceptionHandlerMiddleware Inner error: " + ex.InnerException.Message);
 
             await HandleExceptionAsync(context, ex);
         }
