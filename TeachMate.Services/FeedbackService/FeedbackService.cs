@@ -163,7 +163,7 @@ namespace TeachMate.Services
             var tutorReply = new TutorReplyFeedback
             {
                 ReplyContent = replyDto.ReplyContent,
-                ReplyDate = DateTime.Now,
+                ReplyDate = DateTime.UtcNow,
                 ReplierId = appUser.Id,
                 LearningModuleFeedbackId = replyDto.LearningModuleFeedbackId,
                 LearningModuleFeedback = originalFeedback,

@@ -30,7 +30,7 @@ public class PaymentController : ControllerBase
     [HttpPost("vnpay")]
     public async Task<ActionResult<OrderUrlResponseDto>> CreateVnPayOrder(double amount)
     {
-        return await _paymentService.CreateOrderUrl(amount, PaymentProviderType.VnPay, DateTime.Now.Ticks.ToString());
+        return await _paymentService.CreateOrderUrl(amount, PaymentProviderType.VnPay, DateTime.UtcNow.Ticks.ToString());
     }
 
     [HttpPost("CreatePaymentOrder")]

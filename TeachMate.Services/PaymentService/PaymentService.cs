@@ -51,7 +51,7 @@ public class PaymentService : IPaymentService
             Learner = learner,
             LearningModule = learningModule,
             PaymentAmount = amount,
-            CreatedAt = DateTime.Now,
+            CreatedAt = DateTime.UtcNow,
             HasClaimed = false,
             PaymentStatus = PaymentStatus.Pending,
         };
@@ -182,7 +182,7 @@ public class PaymentService : IPaymentService
             Amount = dto.Amount,
             LearningModulePaymentOrder = learningModulePaymentOrder,
             PaymentGateway = dto.PaymentGateway,
-            TxnRef = DateTime.Now.Ticks.ToString()
+            TxnRef = DateTime.UtcNow.Ticks.ToString()
         };
         _context.Transactions.Add(t);
         await _context.SaveChangesAsync();

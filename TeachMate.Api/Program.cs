@@ -178,7 +178,7 @@ builder.Services.AddScoped<ICertificateService, CertificateService>();
 // Add Cron-jobs
 DateTime scheduleTime = new DateTime(2024, 6, 27, 19, 35, 0);
 
-if (DateTime.Compare(scheduleTime, DateTime.Now) <= 0)
+if (DateTime.Compare(scheduleTime, DateTime.UtcNow) <= 0)
 {
     Console.WriteLine("Schedule cannot be in the past.");
 }

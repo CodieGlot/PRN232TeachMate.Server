@@ -24,7 +24,7 @@ public class ZaloPayService : IZaloPayService
             { "app_user", "teachmate_user" },
             { "app_time", GetUnixTimestamp().ToString() },
             { "amount", amount.ToString() },
-            { "app_trans_id", DateTime.Now.ToString("yyMMdd") + "_" + app_trans_id }, // the trading code must be in the format yymmdd_xxxx
+            { "app_trans_id", DateTime.UtcNow.ToString("yyMMdd") + "_" + app_trans_id }, // the trading code must be in the format yymmdd_xxxx
             { "embed_data", JsonConvert.SerializeObject(embed_data) },
             { "item", JsonConvert.SerializeObject(items) },
             { "description", "TeachMate - Order #" + app_trans_id },

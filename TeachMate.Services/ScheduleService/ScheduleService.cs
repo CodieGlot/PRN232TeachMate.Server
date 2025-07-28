@@ -61,7 +61,7 @@ public class ScheduleService : IScheduleService
         {
             throw new BadRequestException("This learning module have not started yet");
         }
-        if (dto.Date <= DateOnly.FromDateTime(DateTime.Now))
+        if (dto.Date <= DateOnly.FromDateTime(DateTime.UtcNow))
         {
             throw new BadRequestException("Custom sessions cannot be added for today or past dates. Please select a future date.");
         }
@@ -273,7 +273,7 @@ public class ScheduleService : IScheduleService
         LearningModule learningModule = await _learningModuleService.GetLearningModuleById(dto.LearningModuleId);
         if (learningModule == null) throw new NotFoundException("Can not found learning module");
         if (dto.Date >= learningModule.StartDate) throw new BadRequestException("Free learning session must be scheduled before the start date of learning module");
-        if (dto.Date <= DateOnly.FromDateTime(DateTime.Now))
+        if (dto.Date <= DateOnly.FromDateTime(DateTime.UtcNow))
         {
             throw new BadRequestException("Custom sessions cannot be added for today or past dates. Please select a future date.");
         }
@@ -305,16 +305,16 @@ public class ScheduleService : IScheduleService
         //free
         if (learningSession.Date < learningModule.StartDate)
         {
-            if ((learningSession.Date < DateOnly.FromDateTime(DateTime.Now)) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.EndTime < TimeOnly.FromDateTime(DateTime.Now))))
+            if ((learningSession.Date < DateOnly.FromDateTime(DateTime.UtcNow)) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.EndTime < TimeOnly.FromDateTime(DateTime.UtcNow))))
             {
                 throw new BadRequestException("The session have ended");
             }
-            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.Now) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.Now))))
+            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.UtcNow) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.UtcNow))))
             {
                 throw new BadRequestException("The session have not started");
             }
 
-            else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.Now) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.Now)))) {
+            else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.UtcNow) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.UtcNow)))) {
                 return learningSession.LinkMeet;
             }
         }
@@ -324,16 +324,16 @@ public class ScheduleService : IScheduleService
             {
                 throw new BadRequestException("You must pay for class to participate this session");
             }
-            else if ((learningSession.Date < DateOnly.FromDateTime(DateTime.Now)) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.EndTime < TimeOnly.FromDateTime(DateTime.Now)))) 
+            else if ((learningSession.Date < DateOnly.FromDateTime(DateTime.UtcNow)) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.EndTime < TimeOnly.FromDateTime(DateTime.UtcNow)))) 
             {
                 throw new BadRequestException("The session have ended");
             }
-            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.Now) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.Now))))
+            else if (learningSession.Date > DateOnly.FromDateTime(DateTime.UtcNow) || ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime > TimeOnly.FromDateTime(DateTime.UtcNow))))
             {
                 throw new BadRequestException("The session have not started");
             }
 
-            else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.Now)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.Now) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.Now)))) {
+            else if ((learningSession.Date == DateOnly.FromDateTime(DateTime.UtcNow)) && (learningSession.StartTime < TimeOnly.FromDateTime(DateTime.UtcNow) && (learningSession.EndTime > TimeOnly.FromDateTime(DateTime.UtcNow)))) {
                 return learningSession.LinkMeet;
             }
         }

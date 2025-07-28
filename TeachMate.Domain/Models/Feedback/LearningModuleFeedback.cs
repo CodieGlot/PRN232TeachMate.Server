@@ -17,7 +17,7 @@ namespace TeachMate.Domain
         public string Comment { get; set; } = string.Empty;
         [Range(1, 5)]
         public int Star { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public LearningModule LearningModule { get; set; } 
         public AppUser AppUser { get; set; }
         public int LikeNumber { get; set; } = 0;

@@ -15,13 +15,13 @@ namespace TeachMate.Domain
         public int Id { get; set; }
         public string OTP { get; set; }
         public string Gmail { get; set; }
-        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime CreateAt { get; set; } = DateTime.UtcNow;
 
-        public DateTime ExpireAt { get; set; } = DateTime.Now.AddMinutes(2);
+        public DateTime ExpireAt { get; set; } = DateTime.UtcNow.AddMinutes(2);
         [NotMapped]
         public bool IsExpired
         {
-            get { return ExpireAt < DateTime.Now; }
+            get { return ExpireAt < DateTime.UtcNow; }
         }
     }
 }

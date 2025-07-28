@@ -13,7 +13,7 @@ public class PushNotification
     public Guid CreatorId { get; set; } = Guid.Empty;
     public string CreatorDisplayName { get; set; } = string.Empty;
     public string CustomMessage { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     [JsonIgnore]
     public List<PushNotificationReceiver> Receivers { get; set; } = new();
 }

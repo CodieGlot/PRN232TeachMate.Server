@@ -182,7 +182,7 @@ public class AuthService : IAuthService
         {
             throw new BadRequestException("Wrong OTP");
         }
-        else if (OtpAppUser.ExpireAt <= DateTime.Now)
+        else if (OtpAppUser.ExpireAt <= DateTime.UtcNow)
         {
             throw new BadRequestException("the OTP has been expired");
         }

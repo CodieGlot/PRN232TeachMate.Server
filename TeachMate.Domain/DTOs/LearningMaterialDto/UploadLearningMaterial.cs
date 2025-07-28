@@ -10,7 +10,7 @@ namespace TeachMate.Domain
     {
         public string DisplayName { get; set; }
         public string LinkDownload { get; set; }
-        public DateTime UploadDate { get; set; } = DateTime.Now;
+        public DateTime UploadDate { get; set; } = DateTime.UtcNow;
         public int LearningChapterId { get; set; }
 
     }

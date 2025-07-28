@@ -81,8 +81,8 @@ namespace TeachMate.Services
                 {
                     userOTP.OTP = randomNumberString;
                     userOTP.Gmail = dto.Email;
-                    userOTP.CreateAt = DateTime.Now;
-                    userOTP.ExpireAt = DateTime.Now.AddMinutes(3);
+                    userOTP.CreateAt = DateTime.UtcNow;
+                    userOTP.ExpireAt = DateTime.UtcNow.AddMinutes(3);
                     _context.Update(userOTP);
                 }
                 else if (userOTP == null)

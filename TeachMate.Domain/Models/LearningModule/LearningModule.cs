@@ -15,7 +15,7 @@ public class LearningModule
     // Calculated in minutes
     public int GradeLevel { get; set; }
     public int Duration { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
     /*[NotMapped]

@@ -23,7 +23,7 @@ public class VnPayService : IVnPayService
         vnpay.AddRequestData("vnp_TmnCode", _vnPayConfig.TmnCode);
         vnpay.AddRequestData("vnp_Amount", (amount * 100).ToString());
 
-        vnpay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
+        vnpay.AddRequestData("vnp_CreateDate", DateTime.UtcNow.ToString("yyyyMMddHHmmss"));
         vnpay.AddRequestData("vnp_CurrCode", _vnPayConfig.CurrCode);
         vnpay.AddRequestData("vnp_IpAddr", _contextService.GetIpAddress());
         vnpay.AddRequestData("vnp_Locale", _vnPayConfig.Locale);
