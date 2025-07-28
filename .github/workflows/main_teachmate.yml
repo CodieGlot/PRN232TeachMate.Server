@@ -58,8 +58,8 @@ jobs:
       - name: Run EF Core Migrations
         run: |
           dotnet ef database update \
-            --project ./TeachMate.Server/TeachMate.Services/TeachMate.Services.csproj \
-            --startup-project ./TeachMate.Server/TeachMate.Api/TeachMate.Api.csproj \
+            --project ./TeachMate.Services/TeachMate.Services.csproj \
+            --startup-project ./TeachMate.Api/TeachMate.Api.csproj \
             --configuration Release
         env:
           DOTNET_ROOT: /usr/share/dotnet
