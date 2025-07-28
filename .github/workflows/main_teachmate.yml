@@ -39,6 +39,7 @@ jobs:
             --configuration Release
         env:
           DOTNET_ROOT: /usr/share/dotnet
+          ASPNETCORE_ENVIRONMENT: Production
           ConnectionStrings__DefaultConnection: ${{ secrets.PROD_CONNECTION_STRING }}
 
       - name: Publish TeachMate.Api project
