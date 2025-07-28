@@ -45,11 +45,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dotnet-app
+          path: ./dotnet-app
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'teachmate'
           slot-name: 'Production'
-          package: dotnet-app
+          package: ./dotnet-app
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D6387F0FDA9945FA810902E05BB5D1B7 }}
