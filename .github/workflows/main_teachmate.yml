@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read # Required for actions/checkout
+      contents: read
 
     steps:
       - name: Checkout code
@@ -21,11 +21,25 @@ jobs:
         with:
           dotnet-version: '8.x'
 
+      - name: Install EF Core CLI
+        run: dotnet tool install --global dotnet-ef
+
       - name: Restore NuGet packages
         run: dotnet restore TeachMate.Server.sln
 
       - name: Build the solution
         run: dotnet build TeachMate.Server.sln --configuration Release --no-restore
+
+      - name: Run EF Core Migrations
+        run: |
+          export PATH="$PATH:/home/runner/.dotnet/tools"
+          dotnet ef database update \
+            --project ./TeachMate.Services/TeachMate.Services.csproj \
+            --startup-project ./TeachMate.Api/TeachMate.Api.csproj \
+            --configuration Release
+        env:
+          DOTNET_ROOT: /usr/share/dotnet
+          ConnectionStrings__DefaultConnection: ${{ secrets.PROD_CONNECTION_STRING }}
 
       - name: Publish TeachMate.Api project
         run: dotnet publish ./TeachMate.Api/TeachMate.Api.csproj --configuration Release --output ./publish --no-build
@@ -51,20 +65,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-
-      - name: Install EF Core CLI
-        run: dotnet tool install --global dotnet-ef
-
-      - name: Run EF Core Migrations
-        working-directory: ./PRN232TeachMate.Server
-        run: |
-          dotnet ef database update \
-            --project ./TeachMate.Services/TeachMate.Services.csproj \
-            --startup-project ./TeachMate.Api/TeachMate.Api.csproj \
-            --configuration Release
-        env:
-          DOTNET_ROOT: /usr/share/dotnet
-          ConnectionStrings__DefaultConnection: ${{ secrets.PROD_CONNECTION_STRING }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
