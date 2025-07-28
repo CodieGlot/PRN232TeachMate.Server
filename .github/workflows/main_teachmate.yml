@@ -47,6 +47,23 @@ jobs:
           name: dotnet-app
           path: ./dotnet-app
 
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Install EF Core CLI
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Run EF Core Migrations
+        run: |
+          dotnet ef database update \
+            --project ./TeachMate.Services/TeachMate.Services.csproj \
+            --startup-project ./TeachMate.Api/TeachMate.Api.csproj \
+            --configuration Release
+        env:
+          ConnectionStrings__DefaultConnection: ${{ secrets.PROD_CONNECTION_STRING }}
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
