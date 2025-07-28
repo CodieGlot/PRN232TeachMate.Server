@@ -8,7 +8,7 @@ public class UserCredentialValidator : AbstractValidator<UserCredentialDto>
     public UserCredentialValidator()
     {
         RuleFor(x => x.Username)
-            .Length(5, 15);
+            .Length(5, 100);
         RuleFor(x => x.Password)
             .Length(6, 20);
     }
