@@ -174,21 +174,25 @@ public class AuthService : IAuthService
     }
     public async Task<ResponseDto> VerifyOTP(VerifyOTPDto dto)
     {
-        String OTP = dto.OTP1 + dto.OTP2 + dto.OTP3 + dto.OTP4;
-        var OtpCode = await _context.UserOTPs.Where(p => p.Gmail == dto.Email).Select(p => p.OTP).FirstOrDefaultAsync();
-        var OtpAppUser = await _context.UserOTPs.Where(p => p.OTP == OTP).FirstOrDefaultAsync();
-        var appUser = await _context.AppUsers.Where(p => p.Email.Equals(dto.Email)).FirstOrDefaultAsync();
-        if (!OTP.Equals(OtpCode))
+        var userOTP = await _context.UserOTPs
+            .Where(p => p.Gmail == dto.Email)
+            .Select(p => new
+            {
+                p.OTP,
+                p.ExpireAt
+            })
+            .FirstOrDefaultAsync();
+
+        if (userOTP == null || !dto.OTP.Equals(userOTP.OTP))
         {
             throw new BadRequestException("Wrong OTP");
         }
-        else if (OtpAppUser.ExpireAt <= DateTime.UtcNow)
+        else if (userOTP.ExpireAt <= DateTime.UtcNow)
         {
-            throw new BadRequestException("the OTP has been expired");
+            throw new BadRequestException("OTP has been expired");
         }
-        return new ResponseDto(" successfully");
+        return new ResponseDto("Login successfully");
     }
-
 }
 
 
