@@ -227,13 +227,15 @@ else
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "TeachMate API V1");
-        options.RoutePrefix = "swagger";
+        options.RoutePrefix = "docs";
     });
 }
 
 app.UseGlobalExceptionHandler();
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
 
 app.UseCors();
 
