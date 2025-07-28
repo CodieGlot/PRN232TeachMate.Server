@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachMate.Domain", "TeachMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeachMate.Services", "TeachMate.Services\TeachMate.Services.csproj", "{D27AA2C0-3496-4BD8-BF58-CE0A3B964BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeachMate.SeleniumTests", "TeachMate.SeleniumTests\TeachMate.SeleniumTests.csproj", "{BAADD291-6A12-4D32-AF34-68570319E677}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{D27AA2C0-3496-4BD8-BF58-CE0A3B964BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D27AA2C0-3496-4BD8-BF58-CE0A3B964BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D27AA2C0-3496-4BD8-BF58-CE0A3B964BD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BAADD291-6A12-4D32-AF34-68570319E677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BAADD291-6A12-4D32-AF34-68570319E677}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BAADD291-6A12-4D32-AF34-68570319E677}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BAADD291-6A12-4D32-AF34-68570319E677}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
